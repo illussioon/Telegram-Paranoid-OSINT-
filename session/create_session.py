@@ -2,8 +2,8 @@ from telethon import TelegramClient
 import os
 
 # Telegram API credentials
-API_ID = 4514878
-API_HASH = '06ede7494d1559c37337a3fd2047990c'
+API_ID = 
+API_HASH = ''
 
 # Путь для сохранения сессии
 SESSION_PATH = 'session/telegram_session'
