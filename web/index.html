@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARANOID - OSINT Tool</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar glass-effect">
+            <div class="logo-container">
+                <h1>PARANOID</h1>
+            </div>
+            <nav class="menu">
+                <a href="#" class="menu-item active" data-section="home">
+                    <span class="icon">🏠</span> Главная
+                </a>
+                <div class="menu-dropdown">
+                    <a href="#" class="menu-item">
+                        <span class="icon">📱</span> Telegram
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#" class="menu-item" data-section="telegram-auth">
+                            <span class="icon">🔐</span> Создать сессию Telegram
+                        </a>
+                        <a href="#" class="menu-item" data-section="chat-analysis">
+                            <span class="icon">📊</span> Анализ чата
+                        </a>
+                        <a href="#" class="menu-item" data-section="graph">
+                            <span class="icon">🔗</span> Граф взаимодействий
+                        </a>
+                        <a href="#" class="menu-item" data-section="telegram-tools">
+                            <span class="icon">🛠️</span> Дополнительные инструменты
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="menu-item" onclick="openParanoidClient()">
+                    <span class="icon">💻</span> Paranoid Client
+                </a>
+                <a href="#" class="menu-item" data-section="settings">
+                    <span class="icon">⚙️</span> Настройки
+                </a>
+            </nav>
+        </div>
+
+        <div class="main-content glass-effect">
+            <!-- Секция главной страницы -->
+            <section id="home" class="content-section active">
+                <div class="content-header">
+                    <h2>Добро пожаловать в PARANOID</h2>
+                </div>
+                <div class="content-body">
+                    <div class="faq-container">
+                        <div class="faq-section">
+                            <h3>🔍 Начало работы</h3>
+                            <div class="faq-item">
+                                <h4>1. Создание сессии Telegram</h4>
+                                <p>Для начала работы необходимо создать сессию Telegram:</p>
+                                <ul>
+                                    <li>Нажмите на "Telegram" в боковом меню</li>
+                                    <li>Выберите "Создать сессию Telegram"</li>
+                                    <li>Введите номер телефона и код подтверждения</li>
+                                    <li>При необходимости введите пароль двухфакторной аутентификации</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-section">
+                            <h3>📊 Основные функции</h3>
+                            <div class="faq-item">
+                                <h4>Анализ чата</h4>
+                                <p>Позволяет получить подробную статистику по чату:</p>
+                                <ul>
+                                    <li>Общая информация о чате</li>
+                                    <li>Статистика сообщений по пользователям</li>
+                                    <li>Анализ часто используемых слов</li>
+                                    <li>Поиск контактной информации (email, телефоны)</li>
+                                </ul>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Граф взаимодействий</h4>
+                                <p>Визуализирует взаимодействия между участниками чата:</p>
+                                <ul>
+                                    <li>Отображение связей между пользователями</li>
+                                    <li>Визуализация активности участников</li>
+                                    <li>Анализ структуры общения в чате</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-section">
+                            <h3>💡 Способы использования</h3>
+                            <div class="faq-item">
+                                <h4>Загрузка JSON файла</h4>
+                                <p>Вы можете загрузить готовый JSON файл экспорта чата из Telegram</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Прямая загрузка из Telegram</h4>
+                                <p>После создания сессии можно напрямую выбрать чат из вашего ��ккаунта для анализа</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-section">
+                            <h3>⚠️ Важные замечания</h3>
+                            <div class="faq-item">
+                                <ul>
+                                    <li>Сессия Telegram сохраняется локально и может использоваться повторно</li>
+                                    <li>При анализе чата учитываются только текстовые сообщения</li>
+                                    <li>Граф строится на основе ответов пользователей друг другу</li>
+                                    <li>Аватарки пользователей сохраняются локально для построения графа</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция анализа чата -->
+            <section id="chat-analysis" class="content-section">
+                <div class="content-header">
+                    <h2>Анализ чата</h2>
+                </div>
+                <div class="content-body">
+                    <div class="source-selector">
+                        <div class="source-option">
+                            <input type="radio" id="fileSource" name="dataSource" value="file" checked>
+                            <label for="fileSource">Загрузить JSON файл</label>
+                        </div>
+                        <div class="source-option">
+                            <input type="radio" id="telegramSource" name="dataSource" value="telegram">
+                            <label for="telegramSource">Загрузить из Telegram</label>
+                        </div>
+                    </div>
+
+                    <!-- Контейнер для загрузки файла -->
+                    <div id="fileUploadContainer" class="upload-container">
+                        <input type="file" id="chatFile" accept=".json">
+                        <button onclick="analyzeChatFile()">Анализировать</button>
+                    </div>
+
+                    <!-- Контейнер для Telegram -->
+                    <div id="telegramContainer" class="telegram-container" style="display: none;">
+                        <div class="telegram-auth" id="telegramAuthSection">
+                            <button onclick="requireTelegramAuth(showTelegramChats)">Подключить Telegram</button>
+                        </div>
+                        <div class="telegram-chats" id="telegramChatsSection" style="display: none;">
+                            <div class="search-chats-container">
+                                <input type="text" id="chatSearchInput" placeholder="Поиск чата..." oninput="filterChats()">
+                                <div class="chats-dropdown" id="chatsDropdown"></div>
+                            </div>
+                            <button onclick="analyzeTelegramChat()">Анализировать выбранный чат</button>
+                        </div>
+                    </div>
+
+                    <div id="analysisResults" class="results-container"></div>
+                </div>
+            </section>
+
+            <!-- Секция графа взаимодействий -->
+            <section id="graph" class="content-section">
+                <div class="content-header">
+                    <h2>Граф взаимодействий</h2>
+                </div>
+                <div class="content-body">
+                    <div class="source-selector">
+                        <div class="source-option">
+                            <input type="radio" id="fileSourceGraph" name="dataSourceGraph" value="file" checked>
+                            <label for="fileSourceGraph">Загрузить JSON файл</label>
+                        </div>
+                        <div class="source-option">
+                            <input type="radio" id="telegramSourceGraph" name="dataSourceGraph" value="telegram">
+                            <label for="telegramSourceGraph">Загрузить из Telegram</label>
+                        </div>
+                    </div>
+
+                    <div id="fileUploadContainerGraph" class="upload-container">
+                        <input type="file" id="graphFile" accept=".json">
+                        <button onclick="generateGraph()">Построить граф</button>
+                    </div>
+
+                    <div id="telegramContainerGraph" class="telegram-container" style="display: none;">
+                        <div class="telegram-auth" id="telegramAuthSectionGraph">
+                            <button onclick="requireTelegramAuth(showTelegramChats)">Подключить Telegram</button>
+                        </div>
+                        <div class="telegram-chats" id="telegramChatsSectionGraph" style="display: none;">
+                            <div class="search-chats-container">
+                                <input type="text" id="chatSearchInputGraph" placeholder="Поиск чата..." oninput="filterChatsGraph()">
+                                <div class="chats-dropdown" id="chatsDropdownGraph"></div>
+                            </div>
+                            <button onclick="generateGraphFromTelegram()">Построить граф</button>
+                        </div>
+                    </div>
+
+                    <div id="graphResults" class="results-container">
+                        <img id="interactionGraph" style="display: none;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция настроек -->
+            <section id="settings" class="content-section">
+                <div class="content-header">
+                    <h2>Настройки</h2>
+                </div>
+                <div class="content-body">
+                    <div class="settings-container">
+                        <label>
+                            <input type="checkbox" id="stemming">
+                            Использовать стемминг
+                        </label>
+                        <label>
+                            <input type="number" id="topWords" value="20" min="5" max="100">
+                            Количество топ слов
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Добавим новую секцию для авторизации -->
+            <section id="telegram-auth" class="content-section">
+                <div class="content-header">
+                    <h2>Создание сессии Telegram</h2>
+                </div>
+                <div class="content-body">
+                    <div class="auth-container glass-effect">
+                        <p>Для использования функций анализа Telegram необходимо создать сессию.</p>
+                        <button onclick="requireTelegramAuth(() => {
+                            alert('Сессия успешно создана!');
+                            document.querySelector('.menu-item[data-section=home]').click();
+                        })">Создать сессию Telegram</button>
+                        <div id="sessionStatus" class="session-status"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Добавим новую секцию для инструментов -->
+            <section id="telegram-tools" class="content-section">
+                <div class="content-header">
+                    <h2>Дополнительные инструменты Telegram</h2>
+                </div>
+                <div class="content-body">
+                    <div class="tools-grid">
+                        <!-- Поиск пользователей -->
+                        <div class="tool-card glass-effect">
+                            <h3>🔍 Поиск пользовател��й в группах</h3>
+                            <div class="tool-content">
+                                <input type="text" id="groupSearchInput" placeholder="ID или username группы">
+                                <input type="text" id="userSearchQuery" placeholder="Поисковый запрос">
+                                <button onclick="searchUsersInGroup()">Найти</button>
+                            </div>
+                            <div id="userSearchResults" class="tool-results"></div>
+                        </div>
+
+                        <!-- Разбор членов группы -->
+                        <div class="tool-card glass-effect">
+                            <h3>👥 Разбор членов группы</h3>
+                            <div class="tool-content">
+                                <input type="text" id="groupParseInput" placeholder="ID или username группы">
+                                <button onclick="parseGroupMembers()">Получить список</button>
+                            </div>
+                            <div id="groupParseResults" class="tool-results"></div>
+                        </div>
+
+                        <!-- Мониторинг онлайн-статуса -->
+                        <div class="tool-card glass-effect">
+                            <h3>🟢 Мониторинг онлайн-статуса</h3>
+                            <div class="tool-content">
+                                <input type="text" id="userStatusInput" placeholder="Username пользователя">
+                                <div class="interval-selector">
+                                    <label>Интервал проверки:</label>
+                                    <select id="statusCheckInterval">
+                                        <option value="10000">10 секунд</option>
+                                        <option value="30000">30 секунд</option>
+                                        <option value="60000" selected>1 минута</option>
+                                        <option value="300000">5 минут</option>
+                                        <option value="600000">10 минут</option>
+                                    </select>
+                                </div>
+                                <button onclick="toggleUserStatusMonitoring()" id="monitoringToggle">Начать мониторинг</button>
+                            </div>
+                            <div id="userStatusResults" class="tool-results"></div>
+                        </div>
+
+                        <!-- Загрузка фотографий -->
+                        <div class="tool-card glass-effect">
+                            <h3>📸 Загрузка фотографий</h3>
+                            <div class="tool-content">
+                                <input type="text" id="channelPhotosInput" placeholder="ID или username канала">
+                                <button onclick="downloadChannelPhotos()">Загрузить фото</button>
+                            </div>
+                            <div id="photosResults" class="tool-results"></div>
+                        </div>
+
+                        <!-- Мониторинг профиля -->
+                        <div class="tool-card glass-effect" id="profileMonitorCard">
+                            <h3>👤 Мониторинг профиля</h3>
+                            <div class="tool-content">
+                                <div class="input-group">
+                                    <input type="text" id="profileMonitorInput" placeholder="Введите username (например: durov)">
+                                    <select id="profileCheckInterval">
+                                        <option value="5000">5 секунд</option>
+                                        <option value="10000">10 секунд</option>
+                                        <option value="30000" selected>30 секунд</option>
+                                        <option value="60000">1 минута</option>
+                                        <option value="300000">5 минут</option>
+                                    </select>
+                                    <button onclick="toggleProfileMonitoring()">Начать мониторинг</button>
+                                </div>
+                                <div id="profileMonitorResults" class="tool-results">
+                                    <div class="profile-tabs">
+                                        <button class="tab-button active" data-tab="monitoring">Мониторинг</button>
+                                        <button class="tab-button" data-tab="changes">Изменения</button>
+                                    </div>
+                                    <div class="profile-tab-content">
+                                        <div id="monitoringTab" class="profile-tab active"></div>
+                                        <div id="changesTab" class="profile-tab"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Получение сообщений пользователя -->
+                        <div class="tool-card glass-effect">
+                            <h3>💬 Сообщения пользователя</h3>
+                            <div class="tool-content">
+                                <input type="text" id="userMessagesInput" placeholder="Username пользователя">
+                                <div class="chats-selector">
+                                    <label>Выберите чаты для поиска:</label>
+                                    <div id="userMessageChats" class="chats-list"></div>
+                                    <div class="chats-controls">
+                                        <button onclick="selectAllChats()">Выбрать все</button>
+                                        <button onclick="deselectAllChats()">Снять выбор</button>
+                                    </div>
+                                </div>
+                                <button onclick="getUserMessages()">Получить сообщения</button>
+                            </div>
+                            <div id="userMessagesResults" class="tool-results"></div>
+                        </div>
+
+                        <!-- Комплексный анализ группы -->
+                        <div class="tool-card glass-effect">
+                            <h3>📊 Комплексный анализ группы</h3>
+                            <div class="tool-content">
+                                <div class="group-selector">
+                                    <label>Выберите группу для анализа:</label>
+                                    <select id="groupAnalysisSelect">
+                                        <option value="">Выберите группу...</option>
+                                    </select>
+                                </div>
+                                <button onclick="loadAndAnalyzeGroup()">Начать анализ</button>
+                            </div>
+                            <div id="groupAnalysisResults" class="tool-results">
+                                <div class="analysis-tabs">
+                                    <button class="tab-button active" data-tab="posts">Посты</button>
+                                    <button class="tab-button" data-tab="comments">Комментарии</button>
+                                    <button class="tab-button" data-tab="graph">Граф в��аимодействий</button>
+                                </div>
+                                <div class="tab-content">
+                                    <div id="postsTab" class="tab active"></div>
+                                    <div id="commentsTab" class="tab"></div>
+                                    <div id="graphTab" class="tab"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content glass-effect">
+            <div class="auth-step" id="phoneStep">
+                <h2>Авторизация Telegram</h2>
+                <p>Введите номер телефона:</p>
+                <input type="text" id="authPhone" placeholder="+7xxxxxxxxxx">
+                <button onclick="startAuth()">Продолжить</button>
+            </div>
+
+            <div class="auth-step" id="codeStep" style="display: none;">
+                <h2>Подтверждение</h2>
+                <p>Введите код из Telegram:</p>
+                <input type="text" id="authCode" placeholder="12345">
+                <button onclick="verifyCode()">Подвердить</button>
+            </div>
+
+            <div class="auth-step" id="passwordStep" style="display: none;">
+                <h2>Двухфакторная аутентификация</h2>
+                <p>Введите пароль от аккаунта:</p>
+                <input type="password" id="auth2FA" placeholder="Пароль">
+                <button onclick="verify2FA()">Войти</button>
+            </div>
+
+            <div class="error-message" id="authError"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

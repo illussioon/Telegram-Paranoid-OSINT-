@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paranoid Client</title>
+    <link rel="stylesheet" href="css/client.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+
+<body>
+    <div class="client-container">
+        <!-- Левая панель со списком чатов -->
+        <div class="chats-panel">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск чатов...">
+            </div>
+            <div class="chats-list" id="chatsList">
+                <!-- Чаты будут добавляться динамически -->
+            </div>
+        </div>
+
+        <!-- Правая панель с сообщениями -->
+        <div class="messages-panel">
+            <div class="chat-header" id="chatHeader">
+                <!-- Информация о текущем чате -->
+            </div>
+            <div class="messages-list" id="messagesList">
+                <!-- Сообщения будут добавляться динамически -->
+            </div>
+            <div class="message-input">
+                <textarea placeholder="Введите сообщение..."></textarea>
+                <button class="send-button">
+                    <span class="icon">📤</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="js/client.js"></script>
+</body>
+
+</html>

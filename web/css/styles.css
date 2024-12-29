@@ -1,0 +1,1347 @@
+/* Импортируем базовые стили */
+
+:root {
+    --background: 252 30% 15%;
+    --foreground: 210 40% 98%;
+    --primary: 252 89% 75%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 252 89% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 252 89% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 252 89% 25%;
+    --accent-foreground: 210 40% 98%;
+    --border: 252 89% 30%;
+    --input: 252 89% 30%;
+    --ring: 252 89% 75%;
+    --radius: 1rem;
+}
+
+
+/* Базовые стили */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A1F2C 0%, #2C1A2F 100%);
+    font-family: system-ui, -apple-system, sans-serif;
+    color: white;
+}
+
+
+/* Контейнер */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* Боковое меню */
+
+.sidebar {
+    width: 250px;
+    padding: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: white;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active {
+    background: rgba(155, 135, 245, 0.2);
+}
+
+.icon {
+    margin-right: 0.75rem;
+}
+
+
+/* Основной контент */
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.content-header {
+    margin-bottom: 2rem;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+}
+
+.content-section {
+    display: none;
+    padding: 2rem;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.upload-container {
+    margin-bottom: 2rem;
+}
+
+.results-container {
+    margin-top: 2rem;
+    background: transparent;
+}
+
+.analysis-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+}
+
+.analysis-section h3 {
+    margin-bottom: 1rem;
+}
+
+.analysis-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.analysis-section li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.error {
+    color: #ff6b6b;
+    padding: 1rem;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 0.5rem;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.settings-container label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#interactionGraph {
+    max-width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    background: transparent;
+}
+
+
+/* Добавляем стили для выпадающего меню */
+
+.menu-dropdown {
+    position: relative;
+}
+
+.menu-dropdown>.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.menu-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content .menu-item:first-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+}
+
+.menu-dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-content .menu-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9em;
+}
+
+
+/* Стили для выбора источника данных */
+
+.source-selector {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+}
+
+.source-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+/* Стили для Telegram контейнера */
+
+.telegram-container {
+    margin-bottom: 2rem;
+}
+
+.telegram-auth {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.telegram-auth input {
+    flex: 1;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+}
+
+.telegram-chats {
+    display: flex;
+    gap: 1rem;
+}
+
+.telegram-chats select {
+    flex: 1;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: rgb(142 129 199);
+    border: none;
+    border-radius: var(--radius);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: rgba(155, 135, 245, 0.8);
+}
+
+
+/* Стили для модального окна */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 400px;
+}
+
+.auth-step {
+    text-align: center;
+}
+
+.auth-step h2 {
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.auth-step p {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.auth-step input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+}
+
+.error-message {
+    color: #ff6b6b;
+    margin-top: 1rem;
+    text-align: center;
+    display: none;
+}
+
+.search-chats-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.search-chats-container input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+}
+
+.chats-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(30, 30, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    display: none;
+    z-index: 100;
+}
+
+.chat-option {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chat-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chat-option.selected {
+    background: rgba(155, 135, 245, 0.2);
+}
+
+.auth-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.session-status {
+    margin-top: 1rem;
+}
+
+.session-status .success {
+    color: #4CAF50;
+}
+
+.session-status .warning {
+    color: #FFC107;
+}
+
+.progress-container {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius);
+}
+
+.progress-container .status {
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.progress-container .error-status {
+    color: #ff6b6b;
+}
+
+.progress-container .success-status {
+    color: #4CAF50;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    height: 100%;
+    background: rgb(142 129 199);
+    transition: width 0.3s ease;
+}
+
+
+/* Стили для FAQ */
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.faq-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+
+.faq-section h3 {
+    margin-bottom: 1.5rem;
+    color: rgb(142 129 199);
+    font-size: 1.5rem;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-item h4 {
+    color: white;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.faq-item p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.faq-item ul {
+    list-style: none;
+    padding-left: 1.5rem;
+}
+
+.faq-item ul li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.faq-item ul li:before {
+    content: "•";
+    color: rgb(142 129 199);
+    position: absolute;
+    left: -1rem;
+}
+
+
+/* Стили для инструментов */
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.tool-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tool-card:hover {
+    transform: translateY(-2px);
+}
+
+.tool-card h3 {
+    margin-bottom: 1rem;
+    color: rgb(142 129 199);
+}
+
+.tool-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tool-content input {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+}
+
+.tool-results {
+    width: 100%;
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius);
+    padding: 1rem;
+    max-height: 600px;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.tool-results.active {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: none;
+}
+
+.interval-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.interval-selector select {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+}
+
+.status-check {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.check-time {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9em;
+    margin-bottom: 0.25rem;
+}
+
+.user-info {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+}
+
+.user-info h4 {
+    margin-bottom: 0.5rem;
+    color: rgb(142 129 199);
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.message-item {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+}
+
+.message-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.message-chat {
+    color: rgb(142 129 199);
+}
+
+.message-text {
+    word-break: break-word;
+}
+
+.chats-selector {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.chats-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgb(142 129 199);
+}
+
+.chats-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 0.5rem;
+}
+
+.chat-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-checkbox:last-child {
+    border-bottom: none;
+}
+
+.chat-checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.chats-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chats-controls button {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 0.9em;
+}
+
+
+/* Стили для скролл-баров */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(142, 129, 199, 0.5);
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(142, 129, 199, 0.8);
+}
+
+
+/* Для Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(142, 129, 199, 0.5) transparent;
+}
+
+
+/* Стили для вкладок анализа группы */
+
+.analysis-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.tab-button {
+    background: transparent;
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-button.active {
+    background: rgba(142, 129, 199, 0.2);
+    color: white;
+    border-color: rgb(142, 129, 199);
+}
+
+.tab-content .tab {
+    display: none;
+}
+
+.tab-content .tab.active {
+    display: block;
+}
+
+.stats-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stats-card h4 {
+    color: rgb(142, 129, 199);
+    margin-bottom: 0.5rem;
+}
+
+.monthly-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.monthly-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.group-selector {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.group-selector select {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    color: white;
+    cursor: pointer;
+}
+
+.group-selector select:focus {
+    outline: none;
+    border-color: rgb(142 129 199);
+}
+
+.group-selector select option {
+    background: rgb(30, 30, 40);
+    color: white;
+    padding: 0.5rem;
+}
+
+.group-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgb(142 129 199);
+    font-size: 0.9em;
+}
+
+.no-groups-message {
+    padding: 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+}
+
+
+/* Стили для информации о профиле */
+
+.profile-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.no-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.profile-name {
+    flex: 1;
+}
+
+.profile-name h3 {
+    margin: 0;
+    color: white;
+}
+
+.username {
+    color: var(--muted-foreground);
+    font-size: 0.9em;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.detail-item .label {
+    color: var(--muted-foreground);
+    min-width: 120px;
+}
+
+.detail-item .value {
+    flex: 1;
+}
+
+
+/* Стили для мониторинга профиля */
+
+.profile-changes {
+    background: rgba(142, 129, 199, 0.1);
+    border-left: 3px solid rgb(142, 129, 199);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--radius);
+}
+
+.changes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.changes-title {
+    color: rgb(142, 129, 199);
+    font-weight: 500;
+}
+
+.changes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.changes-list li {
+    padding: 0.25rem 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+button.active {
+    background: rgb(142, 129, 199);
+}
+
+
+/* Стили для вкладок профиля */
+
+.profile-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.profile-tab-content {
+    width: 100%;
+    overflow: hidden;
+}
+
+.profile-tab {
+    display: none;
+    width: 100%;
+}
+
+.profile-tab.active {
+    display: block;
+}
+
+.changes-log {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(142, 129, 199, 0.1);
+    border-radius: var(--radius);
+}
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background: rgb(142, 129, 199);
+}
+
+.profile-changes {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(142, 129, 199, 0.2);
+    border-radius: var(--radius);
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.no-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.profile-info h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.username {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-row .label {
+    width: 150px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.detail-row .value {
+    flex: 1;
+    color: white;
+}
+
+
+/* Стили для мониторинга профиля */
+
+.monitoring-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.monitoring-status {
+    background: rgba(142, 129, 199, 0.1);
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgb(142, 129, 199);
+}
+
+.status-icon {
+    font-size: 1.2rem;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.no-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(142, 129, 199, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: rgb(142, 129, 199);
+}
+
+.profile-info h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.username {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-row {
+    display: flex;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius);
+}
+
+.detail-row .label {
+    width: 150px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.detail-row .value {
+    flex: 1;
+    color: white;
+}
+
+.error {
+    background: rgba(255, 99, 71, 0.1);
+    color: tomato;
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-top: 1rem;
+}
+
+.status {
+    background: rgba(142, 129, 199, 0.1);
+    color: rgb(142, 129, 199);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-top: 1rem;
+}
+
+.change-record {
+    background: rgba(142, 129, 199, 0.1);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.change-header {
+    color: rgb(142, 129, 199);
+    margin-bottom: 0.5rem;
+}
+
+.changes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.change-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+}
+
+.change-type {
+    color: rgb(142, 129, 199);
+}
+
+.profile-table {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    border-collapse: collapse;
+}
+
+.profile-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-table tr:last-child {
+    border-bottom: none;
+}
+
+.profile-table td {
+    padding: 1rem;
+    word-break: break-word;
+}
+
+.profile-table .label {
+    width: 250px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.profile-table .value {
+    color: white;
+    min-width: 300px;
+}
+
+.profile-table .registration-date {
+    color: rgb(142, 129, 199);
+    font-size: 0.9em;
+}
+
+.profile-table .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(142, 129, 199, 0.1);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.no-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(142, 129, 199, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: rgb(142, 129, 199);
+}
+
+.monitoring-status {
+    background: rgba(142, 129, 199, 0.1);
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgb(142, 129, 199);
+}
+
+.status-icon {
+    font-size: 1.2rem;
+}
+
+
+/* Группа ввода */
+
+.input-group {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.input-group input,
+.input-group select {
+    flex: 1;
+    min-width: 200px;
+    max-width: 100%;
+}
+
+
+/* Адаптивность для маленьких экранов */
+
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+    .input-group input,
+    .input-group select,
+    .input-group button {
+        width: 100%;
+    }
+    .tool-card {
+        padding: 1rem;
+    }
+}
+
+
+/* Стили для активного состояния карточки */
+
+.tool-card.monitoring-active {
+    max-width: 900px !important;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
+/* Контейнер результатов */
+
+.tool-results {
+    width: 100%;
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius);
+    padding: 1rem;
+    max-height: 600px;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.tool-results.active {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: none;
+}
+
+
+/* Контейнер мониторинга */
+
+.monitoring-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+/* Добавим стили для скроллбара */
+
+.tool-card::-webkit-scrollbar,
+.tool-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tool-card::-webkit-scrollbar-track,
+.tool-results::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.tool-card::-webkit-scrollbar-thumb,
+.tool-results::-webkit-scrollbar-thumb {
+    background: rgba(142, 129, 199, 0.3);
+    border-radius: 4px;
+}
+
+.tool-results::-webkit-scrollbar-thumb:hover {
+    background: rgba(142, 129, 199, 0.5);
+}
+
+
+/* Адаптивность */
+
+@media (max-width: 1024px) {
+    .tool-card {
+        max-width: 95%;
+    }
+    .tool-card.monitoring-active {
+        max-width: 95% !important;
+    }
+}
