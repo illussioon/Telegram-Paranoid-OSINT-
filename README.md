@@ -1,3 +1,4 @@
+
 # 🔒 PARANOID - Telegram OSINT Tool
 
 [English](#english) | [Русский](#русский)
@@ -27,75 +28,83 @@ PARANOID is a powerful OSINT tool for Telegram that provides advanced functional
 
 ### Dependencies
 
-bash
-Core libraries </br>
-telethon==1.34.0 </br>
-eel==0.16.0 </br>
-asyncio==3.4.3</br>
-nest_asyncio==1.5.8</br>
-Text processing and analysis</br>
-nltk==3.8.1</br>
-emoji==2.8.0</br>
-Graph visualization</br>
-networkx==3.2.1</br>
-matplotlib==3.8.2</br>
-Image processing</br>
-opencv-python==4.8.1.78</br>
-Pillow==10.1.0</br>
-Data processing</br>
-numpy==1.26.2</br>
-Async operations</br>
-aiohttp==3.9.1</br>
-cryptg==0.4.0</br>
-Configuration</br>
-python-dotenv==1.0.0</br>
+**Core libraries**  
+`telethon==1.34.0`  
+`eel==0.16.0`  
+`asyncio==3.4.3`  
+`nest_asyncio==1.5.8`  
 
+**Text processing and analysis**  
+`nltk==3.8.1`  
+`emoji==2.8.0`  
 
+**Graph visualization**  
+`networkx==3.2.1`  
+`matplotlib==3.8.2`  
+
+**Image processing**  
+`opencv-python==4.8.1.78`  
+`Pillow==10.1.0`  
+
+**Data processing**  
+`numpy==1.26.2`  
+
+**Async operations**  
+`aiohttp==3.9.1`  
+`cryptg==0.4.0`  
+
+**Configuration**  
+`python-dotenv==1.0.0`  
 
 ### Installation Steps
+
 1. Clone the repository:
 
-bash
+```bash
 git clone https://github.com/yourusername/paranoid.git
 cd paranoid
-
+```
 
 2. Create and activate virtual environment:
 
-bash
+**Windows:**
+```bash
 python -m venv venv
-Windows
 venv\Scripts\activate
-Linux/Mac
-source venv/bin/activate
+```
 
+**Linux/Mac:**
+```bash
+python -m venv venv
+source venv/bin/activate
+```
 
 3. Install dependencies:
 
-bash
+```bash
 pip install -r requirements.txt
-
+```
 
 4. Configure Telegram API credentials:
-- Create `config.env` in the root directory
-- Add your credentials:
+   - Create `config.env` in the root directory
+   - Add your credentials:
 
-
-bash
+```bash
 API_ID=your_api_id
 API_HASH=your_api_hash
-
+```
 
 ## 🚀 Usage
+
 1. Start the application:
 
-bash
+```bash
 python main.py
+```
 
-
-2. Open your browser and navigate to the provided local URL
-3. Authorize your Telegram account
-4. Start using the tools
+2. Open your browser and navigate to the provided local URL  
+3. Authorize your Telegram account  
+4. Start using the tools  
 
 ## 🔧 Features Description
 
@@ -118,4 +127,122 @@ python main.py
 
 ---
 
+# Русский
 
+## 📋 Описание
+PARANOID — мощный инструмент OSINT для Telegram, предоставляющий расширенные функции анализа чатов, мониторинга профилей и визуализации взаимодействий пользователей. Инструмент оснащён современным интерфейсом и поддерживает обновления в реальном времени.
+
+## 🚀 Основные функции
+- 👥 Мониторинг профилей с обнаружением изменений
+- 💬 Анализ чатов и истории сообщений
+- 📊 Интерактивная визуализация взаимодействий пользователей
+- 🔍 Расширенный поиск пользователей в группах
+- 📱 Встроенный клиент Telegram
+- 🎯 Отслеживание статуса в реальном времени
+- 📸 Анализ медиаконтента
+
+## 🛠 Установка
+
+### Требования
+- Python 3.8 или выше
+- Git
+- Учётные данные API Telegram (API_ID и API_HASH)
+
+### Зависимости
+
+**Базовые библиотеки**  
+`telethon==1.34.0`  
+`eel==0.16.0`  
+`asyncio==3.4.3`  
+`nest_asyncio==1.5.8`  
+
+**Обработка текста и анализ**  
+`nltk==3.8.1`  
+`emoji==2.8.0`  
+
+**Визуализация графов**  
+`networkx==3.2.1`  
+`matplotlib==3.8.2`  
+
+**Обработка изображений**  
+`opencv-python==4.8.1.78`  
+`Pillow==10.1.0`  
+
+**Обработка данных**  
+`numpy==1.26.2`  
+
+**Асинхронные операции**  
+`aiohttp==3.9.1`  
+`cryptg==0.4.0`  
+
+**Конфигурация**  
+`python-dotenv==1.0.0`  
+
+### Шаги установки
+
+1. Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/yourusername/paranoid.git
+cd paranoid
+```
+
+2. Создайте и активируйте виртуальное окружение:
+
+**Windows:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Linux/Mac:**
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+3. Установите зависимости:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Настройте учётные данные API Telegram:
+   - Создайте файл `config.env` в корневой директории
+   - Добавьте учётные данные:
+
+```bash
+API_ID=your_api_id
+API_HASH=your_api_hash
+```
+
+## 🚀 Использование
+
+1. Запустите приложение:
+
+```bash
+python main.py
+```
+
+2. Откройте браузер и перейдите по указанному локальному URL  
+3. Авторизуйтесь в своём аккаунте Telegram  
+4. Начинайте использовать инструменты  
+
+## 🔧 Описание функций
+
+### Мониторинг профилей
+- Отслеживание изменений профиля в реальном времени
+- Обнаружение изменений био, имени и фото
+- Расчёт предполагаемой даты регистрации
+
+### Анализ чатов
+- Статистика сообщений
+- Анализ активности пользователей
+- Анализ медиаконтента
+- Частотный анализ слов
+
+### Встроенный клиент
+- Просмотр чатов
+- Отправка сообщений
+- Поддержка медиа
+- Поддержка голосовых сообщений
