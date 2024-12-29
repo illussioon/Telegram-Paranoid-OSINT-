@@ -28,27 +28,27 @@ PARANOID is a powerful OSINT tool for Telegram that provides advanced functional
 ### Dependencies
 
 bash
-Core libraries
-telethon==1.34.0
-eel==0.16.0
-asyncio==3.4.3
-nest_asyncio==1.5.8
-Text processing and analysis
-nltk==3.8.1
-emoji==2.8.0
-Graph visualization
-networkx==3.2.1
-matplotlib==3.8.2
-Image processing
-opencv-python==4.8.1.78
-Pillow==10.1.0
-Data processing
-numpy==1.26.2
-Async operations
-aiohttp==3.9.1
-cryptg==0.4.0
-Configuration
-python-dotenv==1.0.0
+Core libraries </br>
+telethon==1.34.0 </br>
+eel==0.16.0 </br>
+asyncio==3.4.3</br>
+nest_asyncio==1.5.8</br>
+Text processing and analysis</br>
+nltk==3.8.1</br>
+emoji==2.8.0</br>
+Graph visualization</br>
+networkx==3.2.1</br>
+matplotlib==3.8.2</br>
+Image processing</br>
+opencv-python==4.8.1.78</br>
+Pillow==10.1.0</br>
+Data processing</br>
+numpy==1.26.2</br>
+Async operations</br>
+aiohttp==3.9.1</br>
+cryptg==0.4.0</br>
+Configuration</br>
+python-dotenv==1.0.0</br>
 
 
 
